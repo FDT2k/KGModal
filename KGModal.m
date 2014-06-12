@@ -88,6 +88,45 @@ NSString *const KGModalDidHideNotification = @"KGModalDidHideNotification";
     }
 }
 
+// Display a quick message
+-( void) showWithTitle:(NSString*) title  message:(NSString*) message{
+    UIView * view =[[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 200)];
+    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 24)];
+    UILabel * lmessage = [[UILabel alloc] initWithFrame:CGRectMake(0, 40, 100, 24)];
+    [lmessage setBackgroundColor:[UIColor redColor]];
+    //set colors
+    [label setFont:[UIFont boldSystemFontOfSize:15]];
+    [label setTextColor:[UIColor whiteColor]];
+    [lmessage setTextColor:[UIColor whiteColor]];
+    //adding subviews
+    [view addSubview:label];
+    [view addSubview:lmessage];
+    
+    //set texts
+    [label setText:title];
+    [lmessage setText:message];
+    
+    //compute resize
+    [label sizeToFit];
+    [lmessage sizeToFit];
+    [ label setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    [label setTextAlignment:NSTextAlignmentCenter];
+    [lmessage setTextAlignment:NSTextAlignmentCenter];
+   // [ lmessage setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    if(label.frame.size.width > lmessage.frame.size.width){
+        [view setFrame:CGRectMake(0, 0, label.frame.size.width, 100)];
+        
+    }else{
+        [view setFrame:CGRectMake(0, 0, lmessage.frame.size.width, 100)];
+    }
+    
+    //center everything
+    
+   
+    
+    [self showWithContentView:view];
+}
+
 - (void)showWithContentView:(UIView *)contentView{
     [self showWithContentView:contentView andAnimated:YES];
 }

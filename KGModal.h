@@ -53,6 +53,9 @@ typedef NS_ENUM(NSUInteger, KGModalCloseButtonType){
 // The shared instance of the modal
 + (instancetype)sharedInstance;
 
+// Display a quick message
+-( void) showWithTitle:(NSString*) title  message:(NSString*) message;
+
 // Set the content view to display in the modal and display with animations
 - (void)showWithContentView:(UIView *)contentView;
 
